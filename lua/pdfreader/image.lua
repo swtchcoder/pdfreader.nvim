@@ -12,10 +12,12 @@ Image.DEFAULT_SCALE = 60
 ---@param filepath any
 ---@param scale? number
 local function api_render_image(buffer, filepath, scale)
+	vim.b[buffer].image_managed = true
+	
 	local window = vim.fn.bufwinid(buffer)
 	local win_width = vim.api.nvim_win_get_width(window)
 	local win_height = vim.api.nvim_win_get_height(window)
-	
+
 	vim.bo[buffer].modifiable = true
 	vim.api.nvim_buf_set_lines(buffer, 0, -1, false, {})
 	vim.bo[buffer].modifiable = false

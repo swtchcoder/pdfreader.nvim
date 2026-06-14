@@ -6,22 +6,23 @@ protocol).
 ![demo](https://github.com/user-attachments/assets/5a98c65f-650b-4548-b130-ee3118ac5e86)
 
 ---
+
 ## ✨ Features
 
-* Render PDF pages in **standard**, **dark**, or **text-only** mode.
-* **Bookmarks**
-* **Telescope.nvim** integration.
-* Works on Mac and Linux.
+- Render PDF pages in **standard**, **dark**, or **text-only** mode.
+- **Bookmarks**
+- **Telescope.nvim** integration.
+- Works on Mac and Linux.
 
 ## 📋 Requirements
 
-* [Kitty terminal](https://github.com/kovidgoyal/kitty) or [Ghostty](https://ghostty.org/)
-* [Neovim](https://github.com/neovim/neovim) ≥ 0.9
-* [ImageMagick](https://github.com/ImageMagick/ImageMagick)
-* [Ghostscript](https://ghostscript.com/) (ImageMagick requires it for PDF support)
-* [poppler-utils](https://poppler.freedesktop.org/)
+- [Kitty terminal](https://github.com/kovidgoyal/kitty) or [Ghostty](https://ghostty.org/)
+- [Neovim](https://github.com/neovim/neovim) ≥ 0.9
+- [ImageMagick](https://github.com/ImageMagick/ImageMagick)
+- [Ghostscript](https://ghostscript.com/) (ImageMagick requires it for PDF support)
+- [poppler-utils](https://poppler.freedesktop.org/)
 
-If supported terminal is unavailable, the plugin will automatically work in *text* mode only.
+If supported terminal is unavailable, the plugin will automatically work in _text_ mode only.
 
 ## 📦 Installation
 
@@ -32,9 +33,8 @@ If supported terminal is unavailable, the plugin will automatically work in *tex
   "r-pletnev/pdfreader.nvim",
   lazy   = false,
   dependencies = {
-    "folke/snacks.nvim", -- image rendering
-    "nvim-telescope/telescope.nvim", -- pickers
-
+    "3rd/image.nvim",
+    "nvim-telescope/telescope.nvim",
   },
   config = function()
     require("pdfreader").setup()
@@ -52,35 +52,35 @@ Open a PDF as you would any file:
 
 ### Key mappings
 
-| Key | Action            |
-|-----|-------------------|
-| `n` | Next page         |
-| `p` | Previous page     |
-| `z` | Zoom **in**       |
-| `q` | Zoom **out**      |
-| `e` | Reset zoom        |
+| Key | Action        |
+| --- | ------------- |
+| `n` | Next page     |
+| `p` | Previous page |
+| `z` | Zoom **in**   |
+| `q` | Zoom **out**  |
+| `e` | Reset zoom    |
 
 ### `:PDFReader` sub-commands
 
-| Command                                             | Description |
-|-----------------------------------------------------|-------------|
-| `:PDFReader setViewMode {standard, dark, text}`         | Change view mode |
-| `:PDFReader setAutosave {on, off}`                     | Toggle autosave |
-| `:PDFReader setPage {num}`                          | Jump to page |
-| `:PDFReader addBookmark [{num}][,comment]`          | Add bookmark |
-| `:PDFReader showBookmarks`                          | Telescope bookmarks picker |
-| `:PDFReader showRecentBooks`                        | Telescope recent books picker |
-| `:PDFReader saveState`                              | Force save state |
-| `:PDFReader clearState`                             | Delete state & covers |
-| `:PDFReader redrawPage`                             | Re-render current page |
-| `:PDFReader showToc`                                | Show current book table of contents |
+| Command                                         | Description                         |
+| ----------------------------------------------- | ----------------------------------- |
+| `:PDFReader setViewMode {standard, dark, text}` | Change view mode                    |
+| `:PDFReader setAutosave {on, off}`              | Toggle autosave                     |
+| `:PDFReader setPage {num}`                      | Jump to page                        |
+| `:PDFReader addBookmark [{num}][,comment]`      | Add bookmark                        |
+| `:PDFReader showBookmarks`                      | Telescope bookmarks picker          |
+| `:PDFReader showRecentBooks`                    | Telescope recent books picker       |
+| `:PDFReader saveState`                          | Force save state                    |
+| `:PDFReader clearState`                         | Delete state & covers               |
+| `:PDFReader redrawPage`                         | Re-render current page              |
+| `:PDFReader showToc`                            | Show current book table of contents |
 
 Command arguments are fully tab-completable.
 
 ## 🛠 Troubleshooting
 
-* **Blank buffer / no images** → ensure you are using supported terminal and have installed ImageMagick and poppler-utils.
-* Consult `:messages` for detailed logs emitted by pdfreader.nvim.
+- **Blank buffer / no images** → ensure you are using supported terminal and have installed ImageMagick and poppler-utils.
+- Consult `:messages` for detailed logs emitted by pdfreader.nvim.
 
 ## 🤝 Contributing
 

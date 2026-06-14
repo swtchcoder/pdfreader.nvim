@@ -1,4 +1,4 @@
-local api = require("snacks.image")
+local api = require("image")
 
 ---@class pdfreader.Image
 ---@field src string
@@ -12,21 +12,31 @@ Image.DEFAULT_SCALE = 60
 ---@param filepath any
 ---@param scale? number
 local function api_render_image(buffer, filepath, scale)
-	local opts = { auto_resize = nil }
-	if scale then
-		opts.height = scale
-	end
-	api.placement.new(buffer, filepath, opts)
-
+	local window = vim.fn.bufwinid(buffer)
+	local win_width = vim.api.nvim_win_get_width(window)
+	local win_height = vim.api.nvim_win_get_height(window)
+	
 	vim.bo[buffer].modifiable = true
-	vim.bo[buffer].modified = true
-	vim.api.nvim_buf_set_lines(buffer, -1, -1, false, { "" })
+	vim.api.nvim_buf_set_lines(buffer, 0, -1, false, {})
 	vim.bo[buffer].modifiable = false
-	vim.bo[buffer].modified = false
+	
+	local image = api.from_file(filepath, {
+		buffer = buffer,
+		window = window,
+		height = win_height,
+		width = win_width,
+		with_virtual_padding = true,
+  	})
+	if image then
+		image:render()
+	end
 end
 
 local function api_delete_image(buffer)
-	api.placement.clean(buffer)
+	local images = api.get_images({ buffer = buffer })
+	for _, image in ipairs(images) do
+		image:clear()
+	end
 end
 
 ---@param src string
